@@ -1,0 +1,7 @@
+pystray
+Pillow
+pywin32
+customtkinter
+
+# --- build-only, not needed to just run the app, only to package it as an .exe ---
+pyinstaller

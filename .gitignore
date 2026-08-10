@@ -1,0 +1,12 @@
+# Build output (regenerate with: pyinstaller --onefile --windowed --name ShutdownTimer --icon=shutdowntimer.ico main.pyw)
+build/
+dist/
+*.spec
+
+# Your personal settings and runtime logs — not meant to be shared
+config.json
+error_log.txt
+
+# Python cache
+__pycache__/
+*.pyc
