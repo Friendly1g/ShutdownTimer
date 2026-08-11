@@ -1,62 +1,46 @@
 # ShutdownTimer
 
-A small app that lives in your system tray and shuts your PC down at the
-same time every day, with warnings 10 minutes and 1 minute before.
+A small Windows app that lives in your system tray and shuts your PC down at
+the same time every day, with warnings 10 minutes and 1 minute before.
 
-## The easy way: just use the .exe
+This repo is **private** — only people invited as collaborators can see this
+page or download anything from it. If you're reading this, you were invited.
 
-A ready-to-run copy is at [`dist\ShutdownTimer.exe`](dist/ShutdownTimer.exe).
-There's also a shortcut on your Desktop and one in your Startup folder that
-both point to it already — you don't need to do anything else to use it.
+## Download and run it (no coding needed)
 
-Double-click the Desktop shortcut (or the exe itself) to open it. A dark,
-modern settings window appears (built with a library called CustomTkinter):
+1. Go to the **[Releases page](../../releases)** of this repo (link in the
+   right-hand sidebar too, or click "Releases" near the top).
+2. Under the latest release, download **`ShutdownTimer.exe`**.
+3. Double-click it to run.
 
-- **Shut down at** — Hour and Minute dropdowns for the daily shutdown time
-- **Activate timer** — toggle switch; the timer only actually does anything while this is on
-- **Start automatically when my PC turns on** — toggle switch; checks whether ShutdownTimer
-  is set to auto-launch at login, and lets you turn that on/off. When this
-  changes, the app updates its own Startup shortcut for you.
-- A status line telling you whether it's on and roughly when it'll fire next
-- **Save** — applies and remembers everything above
+**First launch**: Windows will likely show a blue "Windows protected your PC"
+SmartScreen warning, since this is a small homemade app without a paid
+certificate — that's normal, not a sign anything's wrong. Click **More info**
+→ **Run anyway**. It only asks once per copy of the file.
+
+Once it's open, a small dark settings window appears:
+
+- **Shut down at** — pick the hour and minute you want your PC to shut down every day
+- **Activate timer** — turn the whole thing on/off; nothing happens while this is off
+- **Start with Windows** — turns on Windows auto-launch for the app; it manages its own Startup shortcut, no manual setup needed
+- **Save** — remembers everything above so it's still set after a restart
 - **Quit** — fully closes the app
 
-Closing the window with the X does **not** quit the app — it just tucks it
-back into the tray so it keeps running in the background. Look for its small
-blue clock icon near your clock (click the **^** arrow if you don't see it)
-and right-click it for:
+Closing the window with the **X** does *not* quit the app — it just hides it
+in the system tray so it keeps working in the background. Look for its small
+blue clock icon near your clock (click the **^** arrow if it's hidden) and
+right-click it for **Open settings**, **Cancel tonight's shutdown**, or **Exit**.
 
-- **Open settings** — brings the window back
-- **Cancel tonight's shutdown** — skips today only, resumes tomorrow
-- **Exit** — fully closes the app
+You'll get a popup warning 10 minutes before shutdown, and another 1 minute
+before — each has a **Cancel shutdown** button if you change your mind.
 
-If you try to open ShutdownTimer while it's already running, it'll just show
-a short message pointing you to the tray icon instead of opening a second
-copy.
+## Building it yourself instead
 
-The 10-min and 1-min warning popups match the same dark style now too — a
-colored icon (amber for the 10-min warning, red for the 1-min one, so it
-feels more urgent as the deadline gets closer), a bold heading, and a
-"Cancel shutdown" button. The window's title bar is dark-themed as well, so
-the whole thing reads as one continuous surface instead of a dark box under
-a plain white Windows title bar.
-
-**First time you run the .exe**, Windows may show a blue "Windows protected
-your PC" SmartScreen warning if the file was downloaded or copied from
-somewhere else (this can happen even between your own folders, since Windows
-tracks where a file came from). This is normal for any homemade `.exe`
-without a paid certificate — it's not a sign something's wrong. Click
-**More info** → **Run anyway**. It only asks once per file. Some antivirus
-tools (including Windows Defender) occasionally flag freshly-built
-PyInstaller executables as a false positive too — if that happens, check
-Windows Security → Protection history and allow/restore the file.
-
-## The developer way: running it as a Python script
-
-Useful if you want to change the code and test your changes without
-rebuilding the .exe every time.
+If you'd rather run it from the source code (e.g. to make changes):
 
 ```bash
+git clone https://github.com/Friendly1g/ShutdownTimer.git
+cd ShutdownTimer
 pip install -r requirements.txt
 python main.pyw
 ```
@@ -68,9 +52,7 @@ risking a real shutdown, open `scheduler.py` and change `DRY_RUN = False` to
 `DRY_RUN = True` — it'll print what it *would* have done instead. Set it
 back to `False` afterward.
 
-## Building the .exe yourself
-
-After making code changes, rebuild with:
+To package your own `.exe` after making changes:
 
 ```bash
 pyinstaller --onefile --windowed --name ShutdownTimer --icon=shutdowntimer.ico main.pyw
@@ -82,8 +64,8 @@ make_icon.py` first — it's a one-off script, not part of the app itself.
 
 ## Troubleshooting
 
-If the app doesn't seem to have started (no tray icon, no window), check
-`error_log.txt` next to wherever you ran it from — any startup crash gets
+If the app doesn't seem to have started (no tray icon, no window), check for
+an `error_log.txt` next to wherever you ran it from — any startup crash gets
 written there, since the app has no console to show errors in otherwise.
 
 ## What's in this folder
