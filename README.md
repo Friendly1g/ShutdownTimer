@@ -3,8 +3,8 @@
 A small Windows app that lives in your system tray and shuts your PC down at
 the same time every day, with warnings 10 minutes and 1 minute before.
 
-This repo is **private** — only people invited as collaborators can see this
-page or download anything from it. If you're reading this, you were invited.
+Open source under the [MIT license](LICENSE) — use it, copy it, change it,
+whatever you want.
 
 ## Download and run it (no coding needed)
 
